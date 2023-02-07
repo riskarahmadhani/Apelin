@@ -9,18 +9,18 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown">
-                Username <i class="fas fa-caret-down ml-1"></i>
+                {{ auth()->user()->nama }} <i class="fas fa-caret-down ml-1"></i>
             </a>
             <div class="dropdown-menu dropdown-sm dropdown-menu-right">
-                <a href="#" class="dropdown-item">
+                <a href="{{ route('profile') }}" class="dropdown-item">
                     <i class="fas fa-user mr-2"></i> Profile
                 </a>
-                <a href="#"
+                <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
                 class="dropdown-item">
                     <i class="fas fa-sign-out-alt mr-2"></i> Keluar
                 </a>
-                <form action="#" id="logout-form" method="POST">
+                <form action="{{ route('logout') }}" id="logout-form" method="POST">
                     @csrf
                 </form>
             </div>
