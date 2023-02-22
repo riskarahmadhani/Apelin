@@ -2,7 +2,7 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col">
+        <div class="col-4">
             <div class="form-group">
                 <label for="">Tanggal</label>
                 <span class="col"> : 
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-2"></div>
-        <div class="col">
+        <div class="col-6">
             <div class="form-group row">
                 <label for="" class="col">Total</label>
                 <div class="col">
@@ -83,9 +83,11 @@
                     <a href="{{ route('transaksi.index') }}" class="btn btn-default mr-2">Kembali </a>
 
                     <div class="dropdown">
+                        @if ($transaksi->status != 'diambil')
                         <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
-                            Pilih Status Menjadi
+                            Update Status
                         </button>
+                        @endif
                         <div class="dropdown-menu">
                             <?php 
                             $status = [
@@ -106,7 +108,7 @@
 
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-primary btn-block">
+                    <button type="submit" class="btn bg-lightblue btn-block">
                         <i class="fas fa-database"></i> Update Pembayaran
                     </button>
                 </div>

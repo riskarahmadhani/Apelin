@@ -6,7 +6,7 @@
         @endforeach
     </select>
     <div class="input-group-append">
-        <button class="btn btn-primary" id="add">
+        <button class="btn bg-lightblue" id="add">
             Buat Transaksi
         </button>
     </div>

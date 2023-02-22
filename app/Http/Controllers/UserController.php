@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Outlet;
 use App\Models\User;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -28,7 +29,7 @@ class UserController extends Controller
             'role',
             'outlets.nama as outlet'
         )
-        ->paginate();
+        ->paginate(10);
 
         if ($search) {
             $users->appends(['search' => $search]);
@@ -71,6 +72,8 @@ class UserController extends Controller
         ]);
 
         User::create($request->all());
+
+        LogActivity::add('berhasil menambah user');
 
         return redirect()->route('user.index')
         ->with('message', 'success store');
@@ -130,6 +133,8 @@ class UserController extends Controller
             $user->update($request->except(['password']));
         }
 
+        LogActivity::add('berhasil mengupdate user');
+
         return redirect()->route('user.index')
         ->with('message', 'success update');
     }
@@ -143,6 +148,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        LogActivity::add('berhasil menghapus user');
+
         return back()->with('message','success delete');
     }
 }

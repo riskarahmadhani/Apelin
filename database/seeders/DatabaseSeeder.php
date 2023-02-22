@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('outlets')->insert([
             [
-                'nama'=>'Toko Riska Laundry',
-                'alamat'=>'Padaherang',
+                'nama'=>'Riska Laundry Cipicung',
+                'alamat'=>'Cipicung, Desa Karangsari, kec. Padaherang',
                 'tlp'=>'085237849124'
             ],
             [
-                'nama'=>'Toko Rita Laundry',
-                'alamat'=>'Bandung',
+                'nama'=>'Riska Laundry Sukamanah',
+                'alamat'=>'Sukamanah, Desa Karangsari, Kec. Padaherang',
                 'tlp'=>'086512893457'
             ],
         ]);
@@ -69,21 +69,21 @@ class DatabaseSeeder extends Seeder
 
         DB::table('members')->insert([
             [
-                'nama'=>'Dodo Sidodo',
+                'nama'=>'Rizki Fauzi',
                 'jenis_kelamin'=>'L',
-                'alamat'=>'Padaherang',
+                'alamat'=>'Cipicung, Desa Karangsari, Kec. Padaherang.',
                 'tlp'=>'888777666888',
             ],
             [
-                'nama'=>'Ananda',
+                'nama'=>'Yuni Alpiani',
                 'jenis_kelamin'=>'P',
-                'alamat'=>'Banjarsari',
+                'alamat'=>'Sukamanah, Desa Karangsari, Kec. Padaherang.',
                 'tlp'=>'888222666555',
             ],
             [
-                'nama'=>'Caca',
+                'nama'=>'Desi Yuliani',
                 'jenis_kelamin'=>'P',
-                'alamat'=>'Banjarsari',
+                'alamat'=>'Cipicung, Desa Karangsari, Kec. Padaherang.',
                 'tlp'=>'888777666333',
             ],
         ]);

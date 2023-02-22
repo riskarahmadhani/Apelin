@@ -1,23 +1,22 @@
 @extends('layouts.report',['title'=>'Laporan Perbulan'])
 @section('content')
-    <div class="container-fluid">
-        <h3 class="text-center mt-2">
-            {{ $outlet->nama }}
-        </h3>
-        <p class="text-center">
-            <small>
-                {{ $outlet->alamat }} <br>
-                {{ $outlet->tlp }}
-            </small>
-        </p>
-        @php
-            $bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-        @endphp
-        <p>
-            Judul : Laporan Perbulan <br>
-            Tanggal : {{ $bulan[(request()->bulan - 1)] }} {{ request()->tahun }} <br>
-        </p>
-        <table class="table table-sm table-striped">
+    <div class="container">
+        <div class="row mt-2">
+            <img src="/img/logo3.png" alt="" class="mr-3" style="height: 85px">
+            <div class="col">
+                <h3 class="mb-0">{{ $outlet->nama }}</h3>
+                <p>{{ $outlet->alamat }}<br> {{ $outlet->tlp }}</p>
+            </div>
+            <div class="justify-content-end">
+                @php
+                    $bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+                @endphp
+                <h2 class="mb-0">Laporan Perbulan</h2>
+                <p>{{ $bulan[(request()->bulan - 1)] }} {{ request()->tahun }}</p>
+            </div>
+        </div>
+        
+        <table class="table table-sm table-striped mt-3">
             <thead>
                 <tr>
                     <th>No</th>
@@ -38,7 +37,7 @@
                 @endforeach
                 <tfoot>
                     <tr class="border-bottom">
-                        <th colspan="2" >Total</th>
+                        <th colspan="2" class="text-center">Total</th>
                         <th>{{ number_format($data->sum('jumlah'),0,',','.') }}</th>
                     </tr>
                 </tfoot>

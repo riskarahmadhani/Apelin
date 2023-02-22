@@ -14,7 +14,7 @@
         <x-alert-success type="delete" />        
     @endif
 
-    <div class="card card-primary card-outline">
+    <div class="card card-lightblue card-outline">
         <div class="card-header form-inline">
             <x-btn-add :href="route('outlet.create')" />
             <x-search />
@@ -26,7 +26,7 @@
                         <th>No</th>
                         <th>Outlet</th>
                         <th>Telepon</th>
-                        <th>Alamat</th>\
+                        <th>Alamat</th>
                         <th></th>
                     </tr>
                 </thead>

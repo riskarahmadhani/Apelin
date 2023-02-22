@@ -1,6 +1,6 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-lightblue elevation-4">
     <a href="/" class="brand-link">
-        <img src="/img/logo3.png" alt="" class="brand-image img-circle elevation-2" style="opacity: .8">
+        <img src="/img/logo3.png" alt="" class="brand-image img-circle elevation-2 " style="opacity: .8">
         <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
     </a>
     <div class="sidebar">
@@ -12,6 +12,13 @@
                     'active'=>['dashboard']
                 ]"/>
 
+                @can('admin-owner')
+                <x-nav-item href="{{ route('log') }}" :title="[
+                    'name'=>'Log Activity',
+                    'icon'=>'fas fa-shoe-prints',
+                    'active'=>['log']
+                ]"/>
+                @endcan
                                 
                 @can('admin-kasir')
                 <x-nav-item href="{{ route('member.index') }}" :title="[

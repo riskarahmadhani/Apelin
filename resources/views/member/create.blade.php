@@ -6,7 +6,7 @@
 ]">
     <div class="row">
         <div class="col-lg-4 col-md-6">
-            <form action="{{ route('member.store') }}" class="card card-primary" method="POST">
+            <form action="{{ route('member.store') }}" class="card card-lightblue" method="POST">
                 <div class="card-header">
                     Buat Member
                 </div>
@@ -25,7 +25,7 @@
                     label="Telepon"
                     name="tlp" />
 
-                    <x-input 
+                    <x-textarea 
                     label="Alamat"
                     name="alamat" />
 

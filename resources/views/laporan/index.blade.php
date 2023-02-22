@@ -6,7 +6,7 @@
     ]">
     <div class="row">
         <div class="col-md-4">
-            <form action="{{ route('laporan.harian') }}" class="card card-primary" target="_blank">
+            <form action="{{ route('laporan.harian') }}" class="card card-lightblue" target="_blank">
                 <div class="card-header">
                     Laporan Harian
                 </div>
@@ -16,7 +16,8 @@
                     <x-select label="Outlet" name="outlet_id" :data-option="$outlets" />
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn bg-lightblue">
+                        <i class="fas fa-print"></i>
                         Generate Laporan
                     </button>
                 </div>
@@ -24,7 +25,7 @@
         </div>
 
         <div class="col-md-4">
-            <form action="{{ route('laporan.perbulan') }}" class="card card-primary" target="_blank">
+            <form action="{{ route('laporan.perbulan') }}" class="card card-lightblue" target="_blank">
                 <div class="card-header">
                     Laporan Per-Bulan
                 </div>
@@ -47,7 +48,8 @@
                     <x-select label="Outlet" name="outlet_id" :data-option="$outlets" />
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn bg-lightblue">
+                        <i class="fas fa-print"></i>
                         Generate Laporan
                     </button>
                 </div>

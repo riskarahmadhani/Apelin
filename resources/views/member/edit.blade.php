@@ -6,7 +6,7 @@
 ]">
     <div class="row">
         <div class="col-lg-4 col-md-6">
-            <form action="{{ route('member.update',['member'=>$member->id]) }}" class="card card-primary" method="POST">
+            <form action="{{ route('member.update',['member'=>$member->id]) }}" class="card card-lightblue" method="POST">
                 <div class="card-header">
                     Edit Member
                 </div>
@@ -28,7 +28,7 @@
                     name="tlp" 
                     :value="$member->tlp" />
 
-                    <x-input 
+                    <x-textarea 
                     label="Alamat"
                     name="alamat" 
                     :value="$member->alamat" />

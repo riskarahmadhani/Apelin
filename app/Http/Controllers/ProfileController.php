@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\LogActivity;
 use Auth;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        return view('profile.index', [
+            'row'=>$user
+        ]);
+    }
+
     public function edit()
     {
         $pegawai = Auth::user();
@@ -31,6 +40,9 @@ class ProfileController extends Controller
         } else {
             $user->update($request->only('nama'));
         }
-        return back()->with('message','success update');
+
+        LogActivity::add('berhasil mengupdate profile');
+
+        return to_route('profile.index')->with('message','success update');
     }
 }

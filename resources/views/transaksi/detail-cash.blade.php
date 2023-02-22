@@ -56,9 +56,12 @@
                 <a href="{{ route('transaksi.index') }}" class="btn btn-default mr-2">Kembali</a>
 
                 <div class="dropdown">
-                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
-                        Pilih Status Menjadi
-                    </button>
+                    @if ($transaksi->status != 'diambil')
+                        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
+                            Update Status
+                        </button>
+                            {{-- <h3 class="center">Terima Kasih</h3> --}}
+                     @endif
                     <div class="dropdown-menu">
                         <?php 
                         $status = [

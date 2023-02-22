@@ -1,20 +1,21 @@
 @extends('layouts.report',['title'=>'Laporan Harian'])
 @section('content')
-    <div class="container-fluid">
-        <h3 class="text-center mt-2">
-            {{ $outlet->nama }}
-        </h3>
-        <p class="text-center">
-            <small>
-                {{ $outlet->alamat }} <br>
-                {{ $outlet->tlp }}
-            </small>
-        </p>
-        <p>
-            Judul : Laporan Harian <br>
-            Tanggal : {{ date('d F Y', strtotime(request()->tanggal)) }} <br>
-        </p>
-        <table class="table table-sm table-striped">
+    <div class="container">
+        <div class="row mt-2">
+            <img src="/img/logo3.png" alt="" class="mr-3" style="height: 85px">
+            <div class="col">
+                <h3 class="mb-0">{{ $outlet->nama }}</h3>
+                <p>{{ $outlet->alamat }}<br> {{ $outlet->tlp }}</p>
+            </div>
+            <div class="justify-content-end">
+                @php
+                    $bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+                @endphp
+                <h3 class="mb-0">Laporan Harian</h3>
+                <p>{{ date('d F Y', strtotime(request()->tanggal)) }}</p>
+            </div>
+        </div>
+        <table class="table table-sm table-striped mt-3">
             <thead>
                 <tr>
                     <th>No</th>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -19,7 +20,7 @@ class MemberController extends Controller
             return $query->where('nama','like',"%{$search}%")
             ->orWhere('tlp','like',"%{$search}%");
         })
-        ->paginate();
+        ->paginate(10);
 
         if ($search) {
             $members->appends(['search' => $search]);
@@ -58,6 +59,8 @@ class MemberController extends Controller
         ]);
 
         Member::create($request->all());
+
+        LogActivity::add('berhasil menambahkan member');
 
         return redirect()->route('member.index')
         ->with('message', 'success store');
@@ -107,6 +110,8 @@ class MemberController extends Controller
 
         $member->update($request->all());
 
+        LogActivity::add('berhasil mengedit member');
+
         return redirect()->route('member.index')
         ->with('message', 'success update');
     }
@@ -120,6 +125,9 @@ class MemberController extends Controller
     public function destroy(Member $member)
     {
         $member->delete();
+
+        LogActivity::add('berhasil menghapus member');
+
         return back()->with('message','success delete');
     }
 }

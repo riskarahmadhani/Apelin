@@ -9,6 +9,7 @@ use App\Http\Controllers\PaketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LogActivityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,8 +30,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
     Route::post('logout',[AuthController::class, 'logout'])->name('logout');
 
-    Route::get('profile',[ProfileController::class, 'edit'])->name('profile');
-    Route::post('profile',[ProfileController::class, 'update']);
+    Route::get('profile',[ProfileController::class, 'index'])->name('profile.index');
+    Route::get('profile/edit',[ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile',[ProfileController::class, 'update'])->name('profile.update');
 
     Route::middleware('can:admin')->group(function(){
         Route::resource('user',UserController::class);
@@ -38,6 +40,8 @@ Route::middleware('auth')->group(function() {
         Route::resource('outlet',OutletController::class);
 
         Route::resource('paket',PaketController::class);
+
+        Route::delete('log',[LogActivityController::class,'clear'])->name('log.clear');
     });
 
     Route::middleware('can:admin-kasir')->group(function(){
@@ -49,6 +53,8 @@ Route::middleware('auth')->group(function() {
             [TransaksiController::class,'create'])->name('transaksi.create');
         Route::post('transaksi/member/{member}/add',
             [TransaksiController::class,'add'])->name('transaksi.add');
+        Route::get('transaksi/member/{member}/paket/{paket}/edit',
+            [TransaksiController::class,'edit'])->name('transaksi.edit');
         Route::get('transaksi/member/{member}/paket/{paket}/delete',
             [TransaksiController::class,'delete'])->name('transaksi.delete');
         Route::get('transaksi/member/{member}/clear',
@@ -63,6 +69,10 @@ Route::middleware('auth')->group(function() {
             [TransaksiController::class,'status'])->name('transaksi.status');
         Route::get('transaksi/{transaksi}/invoice',
             [TransaksiController::class,'invoice'])->name('transaksi.invoice');
+    });
+
+    Route::middleware('can:admin-owner')->group(function(){
+        Route::get('log',[LogActivityController::class,'index'])->name('log');
     });
 
     Route::get('/laporan',

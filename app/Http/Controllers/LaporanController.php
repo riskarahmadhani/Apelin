@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Outlet;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\LogActivity;
 use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
@@ -66,6 +67,8 @@ class LaporanController extends Controller
         )
         ->get();
 
+        LogActivity::add('berhasil mencetak laporan harian');
+
         return view('laporan.harian',[
             'data'=>$data,
             'outlet'=>$outlet
@@ -91,6 +94,8 @@ class LaporanController extends Controller
         )
         ->groupBy('tanggal')
         ->get();
+
+        LogActivity::add('berhasil mencetak laporan bulanan');
 
         return view('laporan.perbulan',[
             'data'=>$data,

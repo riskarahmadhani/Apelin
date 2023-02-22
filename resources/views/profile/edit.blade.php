@@ -1,7 +1,7 @@
-@extends('layouts.main',['title'=>'My Profile'])
+@extends('layouts.main',['title'=>'Profile'])
 @section('content')
     <x-content :title="[
-        'name'=>'My Profile',
+        'name'=>'Profile',
         'icon'=>'fas fa-user'
     ]">
     <div class="row">
@@ -12,13 +12,14 @@
             @endif
 
             <form
-            class="card card-primary"
+            class="card card-lightblue"
             method="POST" 
-            action="{{ route('profile') }}">
+            action="{{ route('profile.update') }}">
             <div class="card-header">
             </div>
             <div class="card-body">
                 @csrf
+                @method('PUT')
                 <x-input 
                 label="Nama"
                 name="nama"
@@ -44,7 +45,7 @@
                 type="password" />
             </div>
             <div class="card-footer">
-                <x-btn-update />
+                <x-btn-update /> <x-btn-back href="{{ route('profile.index') }}" />
             </div>
         </form>
         </div>

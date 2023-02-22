@@ -1,7 +1,7 @@
 @extends('layouts.main',['title'=>'Transaksi'])
 @section('content')
     <x-content :title="['name'=>'Transaksi','icon'=>'fas fa-cash-register']">
-        <div class="card card-primary card-outline">
+        <div class="card card-lightblue card-outline">
             <div class="card-header form-inline">
                 @include('transaksi.add',['members'=>$members])
                 <x-search />
@@ -26,7 +26,7 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>
-                                    <a href="{{ route('transaksi.detail',['transaksi'=>$transaksi->id]) }}">
+                                    <a href="{{ route('transaksi.detail',['transaksi'=>$transaksi->id]) }}" class="text-lightblue">
                                         {{ $transaksi->kode_invoice }}
                                     </a>
                                 </td>
@@ -40,8 +40,14 @@
                                 <td></td>
                             </tr>
                         @endforeach
+                        {{-- <div class="card-footer pb-0 text-right">
+                            {{ $transaksis->appends(['nama'=>request()->nama])->links('page') }}
+                        </div> --}}
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer">
+                {{ $transaksis->links('page') }}
             </div>
         </div>
     </x-content>

@@ -12,7 +12,7 @@
                 {{ auth()->user()->nama }} <i class="fas fa-caret-down ml-1"></i>
             </a>
             <div class="dropdown-menu dropdown-sm dropdown-menu-right">
-                <a href="{{ route('profile') }}" class="dropdown-item">
+                <a href="{{ route('profile.index') }}" class="dropdown-item">
                     <i class="fas fa-user mr-2"></i> Profile
                 </a>
                 <a href="{{ route('logout') }}"

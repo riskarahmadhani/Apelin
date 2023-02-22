@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
-    <link rel="shortcut icon" href="/img/logo3.png">
+    {{-- <link rel="shortcut icon" href="/img/logo3.png"> --}}
     @stack('css')
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini {{ isset($login) ? 'login-page' : '' }}">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed {{ isset($login) ? 'login-page' : '' }}">
     @if (isset($login))
         <div class="login-box">
             @yield('content')
@@ -27,7 +27,7 @@
         @yield('content')
         <footer class="main-footer">
             <strong>Copyright &copy; 2023
-                <a href="/" class="text-primary">{{ config('app.name') }}</a>.
+                <a href="/" class="text-info">{{ config('app.name') }}</a>.
             </strong>
             All right reserved.
         </footer>

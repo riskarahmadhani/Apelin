@@ -6,7 +6,7 @@
 ]">
     <div class="row">
         <div class="col-lg-4 col-md-6">
-            <form action="{{ route('user.update',['user'=>$user->id]) }}" class="card card-primary" method="POST">
+            <form action="{{ route('user.update',['user'=>$user->id]) }}" class="card card-lightblue" method="POST">
                 <div class="card-header">
                     Edit User
                 </div>

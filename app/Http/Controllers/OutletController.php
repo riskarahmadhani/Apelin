@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Outlet;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
 class OutletController extends Controller
@@ -19,7 +20,7 @@ class OutletController extends Controller
             return $query->where('nama','like',"%{$search}%")
             ->orWhere('tlp','like',"%{$search}%");
         })
-        ->paginate();
+        ->paginate(10);
 
         if ($search) {
             $outlets->appends(['search' => $search]);
@@ -50,13 +51,15 @@ class OutletController extends Controller
     {
         $request->validate([
             'nama' => 'required|max:100',
-            'tlp' => 'required|max:20',
+            'tlp' => 'required|numeric',
             'alamat'=>'required|max:250'
         ], [], [
             'tlp'=>'Telepon'
         ]);
 
         Outlet::create($request->all());
+
+        LogActivity::add('berhasil menambah outlet');
 
         return redirect()->route('outlet.index')
         ->with('message', 'success store');
@@ -97,13 +100,15 @@ class OutletController extends Controller
     {
         $request->validate([
             'nama' => 'required|max:100',
-            'tlp' => 'required|max:20',
+            'tlp' => 'required|numeric',
             'alamat'=>'required|max:250'
         ], [], [
             'tlp'=>'Telepon'
         ]);
 
         $outlet->update($request->all());
+
+        LogActivity::add('berhasil mengupdate outlet');
 
         return redirect()->route('outlet.index')
         ->with('message', 'success update');
@@ -118,6 +123,9 @@ class OutletController extends Controller
     public function destroy(Outlet $outlet)
     {
         $outlet->delete();
+
+        LogActivity::add('berhasil menghapus outlet');
+
         return back()->with('message','success delete');
     }
 }

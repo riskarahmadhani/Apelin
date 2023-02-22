@@ -15,7 +15,7 @@ return [
     'accepted'             => ':Attribute harus diterima.',
     'accepted_if'          => ':Attribute harus diterima ketika :other berisi :value.',
     'active_url'           => ':Attribute bukan URL yang valid.',
-    'after'                => ':Attribute harus berisi tanggal setelah :date.',
+    'after'                => ':Attribute harus berisi tanggal setelah sekarang.',
     'after_or_equal'       => ':Attribute harus berisi tanggal setelah atau sama dengan :date.',
     'alpha'                => ':Attribute hanya boleh berisi huruf.',
     'alpha_dash'           => ':Attribute hanya boleh berisi huruf, angka, strip, dan garis bawah.',

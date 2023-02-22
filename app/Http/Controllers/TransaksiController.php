@@ -8,6 +8,7 @@ use App\Models\Paket;
 use App\Models\Transaksi;
 use App\Models\TransaksiDetail;
 use App\Models\User;
+use App\Models\LogActivity;
 use Cart;
 use Illuminate\Http\Request;
 use Auth;
@@ -42,7 +43,7 @@ class TransaksiController extends Controller
             'total_bayar',
             'outlets.nama as outlet'
         )
-        ->paginate();
+        ->paginate(10);
 
         $transaksis->map(function($row){
             $row->tgl = date('d/m/Y H:i:s',strtotime($row->tgl));
@@ -89,13 +90,22 @@ class TransaksiController extends Controller
             'id' => $paket->id,
             'name'=>$paket->nama_paket,
             'price'=>$paket->harga,
-            'quantity'=>1,
+            'quantity'=>$request->quantity,
             'attributes'=>[
                 'keterangan'=>$request->keterangan
             ]
         ));
 
         return back();
+    }
+
+    public function edit(Request $request, Member $member, Paket $paket)
+    {
+        $type = $request->type;
+        Cart::session($member->id)->update($paket->id, [
+            'quantity'=> $type == 'min' ? -1 : 1,
+         ]);
+         return back();
     }
 
     public function delete(Member $member, Paket $paket)
@@ -183,6 +193,10 @@ class TransaksiController extends Controller
             ]);
         }
 
+        Cart::clear();
+
+        LogActivity::add('berhasil membuat transaksi');
+
         return redirect()->route('transaksi.detail',['transaksi'=>$transaksi->id]);
     }
 
@@ -249,6 +263,8 @@ class TransaksiController extends Controller
 
         $transaksi->update($query_transaksi);
 
+        LogActivity::add('berhasil mengupdate transaksi');
+
         return back()->with('message','success update');
     }
 
@@ -258,9 +274,7 @@ class TransaksiController extends Controller
             'status'=>$status
         ]);
 
-        if ($status == 'Selesai' ) {
-            
-        }
+        LogActivity::add('berhasil mengupdate status pembayaran');
 
         return back()->with('message','success update');
     }
@@ -281,6 +295,8 @@ class TransaksiController extends Controller
             'keterangan'
         )
         ->get();
+
+        LogActivity::add('mencetak invoice');
 
         return view('transaksi.invoice',[
             'items'=>$items,

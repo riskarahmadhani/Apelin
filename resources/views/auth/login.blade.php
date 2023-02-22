@@ -1,8 +1,9 @@
 @extends('layouts.main',['title'=>'Sign In','login'=>true])
 
 @section('content')
-    <div class="login-logo">
-        <a href="/"><b>Login</b>{{ config('app.name') }}</a>
+    <div class="login-logo text-center">
+        <img src="/img/logo3.png" alt="" class="brand-image img-circle m-1" style="opacity: .8" width="90px"> <br>
+        <a href="/"><b>LOGIN {{ config('app.name') }}</b></a>
     </div>
     <div class="card">
         <div class="card-body login-card-body">
@@ -46,14 +47,14 @@
 
                 <div class="row mt-3">
                     <div class="col-8">
-                        <div class="icheck-primary">
+                        <div class="icheck-lightblue">
                             <input type="checkbox" id="remember" name="remember">
                             <label for="remember">Remember Me</label>
                         </div>
                     </div>
 
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button type="submit" class="btn bg-lightblue btn-block">
                             Sign In
                         </button>
                     </div>

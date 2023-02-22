@@ -1,7 +1,7 @@
 @extends('layouts.main',['title'=>'Transaksi'])
 @section('content')
     <x-content :title="['name'=>'Transaksi','icon'=>'fas fa-cash-register']">
-        <div class="card card-primary card-outline">
+        <div class="card card-lightblue card-outline">
             <div class="card-header">
                 <div class="row">
                     <div class="col">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="offset-6 col">
-                                    <button class="btn btn-primary btn-block" type="submit">
+                                    <button class="btn bg-lightblue btn-block" type="submit">
                                         Tambah
                                     </button>
                                 </div>
@@ -74,9 +74,21 @@
                                 </td>
                                 <td>{{ $item->attributes->keterangan }}</td>
                                 <td>
+                                    <a href="{{ route('transaksi.edit',[
+                                        'member'=>$member->id,'paket'=>$item->id, 'type'=>'plus'
+                                    ]) }}" class="btn btn-xs bg-lightblue">
+                                        <i class="fas fa-plus-square"></i>
+                                    </a>
+
+                                    <a href="{{ route('transaksi.edit',[
+                                        'member'=>$member->id,'paket'=>$item->id, 'type'=>'min'
+                                    ]) }}" class="btn btn-xs btn-warning">
+                                        <i class="fas fa-minus-square"></i>
+                                    </a>
+
                                     <a href="{{ route('transaksi.delete',[
                                         'member'=>$member->id,'paket'=>$item->id
-                                    ]) }}" class="btn p-0 text-danger">
+                                    ]) }}" class="btn btn-xs btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -175,7 +187,7 @@
                                 class="btn btn-danger">Clear</a>
                             </div>
                             <div class="col">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn bg-lightblue btn-block">
                                     <i class="fas fa-database mr-2"></i> Simpan / Proses
                                 </button>
                             </div>

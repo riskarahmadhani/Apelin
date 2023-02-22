@@ -6,7 +6,7 @@
 ]">
     <div class="row">
         <div class="col-lg-4 col-md-6">
-            <form action="{{ route('outlet.store') }}" class="card card-primary" method="POST">
+            <form action="{{ route('outlet.store') }}" class="card card-lightblue" method="POST">
                 <div class="card-header">
                     Buat Outlet
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paket;
 use App\Models\Outlet;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
 class PaketController extends Controller
@@ -27,7 +28,7 @@ class PaketController extends Controller
             'jenis',
             'outlets.nama as outlet'
         )
-        ->paginate();
+        ->paginate(10);
 
         if ($search) {
             $pakets->appends(['search' => $search]);
@@ -84,6 +85,8 @@ class PaketController extends Controller
 
         Paket::create($request->all());
 
+        LogActivity::add('berhasil menambah paket');
+
         return redirect()->route('paket.index')
         ->with('message', 'success store');
     }
@@ -134,6 +137,8 @@ class PaketController extends Controller
 
         $paket->update($request->all());
 
+        LogActivity::add('berhasil mengupdate paket');
+
         return redirect()->route('paket.index')
         ->with('message', 'success update');
     }
@@ -147,6 +152,9 @@ class PaketController extends Controller
     public function destroy(Paket $paket)
     {
         $paket->delete();
+
+        LogActivity::add('berhasil menghapus paket');
+
         return back()->with('message','success delete');
     }
 }

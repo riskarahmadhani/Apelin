@@ -14,7 +14,7 @@
             @if (old($name, $value) == $row['value'])
                 <option value="<?= $row['value'] ?>" selected><?= $row['option'] ?></option>
             @else
-                <option value="<?= $row['value'] ?>"><?= $row['option'] ?></option>
+                <option value="<?= $row['value'] ?>" ><?= $row['option'] ?></option>
             @endif
         @endforeach
     </select>

@@ -26,14 +26,14 @@
         <x-box :data-box="[
             'label'=>'Outlet',
             'icon'=>'fas fa-store-alt',
-            'background'=>'bg-olive',
+            'background'=>'bg-lightblue',
             'href'=>route('user.index'),
             'value'=>$outlet->jumlah
         ]"/>
         <x-box :data-box="[
             'label'=>'User',
             'icon'=>'fas fa-user',
-            'background'=>'bg-danger',
+            'background'=>'bg-olive',
             'href'=>route('user.index'),
             'value'=>$user->jumlah
         ]"/>
