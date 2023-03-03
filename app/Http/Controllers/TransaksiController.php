@@ -43,7 +43,8 @@ class TransaksiController extends Controller
             'total_bayar',
             'outlets.nama as outlet'
         )
-        ->paginate(10);
+        ->orderBy('id','desc')
+        ->paginate();
 
         $transaksis->map(function($row){
             $row->tgl = date('d/m/Y H:i:s',strtotime($row->tgl));
@@ -81,7 +82,7 @@ class TransaksiController extends Controller
         $request->validate([
             'paket'=>'required|exists:pakets,id',
             'quantity'=>'required|numeric',
-            'keterangan'=>'nullable|max:200',
+            'keterangan'=>'nullable|max:60',
         ]);
 
         $paket = Paket::find($request->paket);
@@ -123,7 +124,7 @@ class TransaksiController extends Controller
     public function store(Request $request, Member $member)
     {
         $request->validate([
-            'batas_waktu'=>'required|after:now',
+            'batas_waktu'=>'required|after_or_equal:now',
             'diskon'=>'nullable|numeric',
             'biaya_tambahan'=>'nullable|numeric',
             'uang_tunai'=>'nullable|numeric'
@@ -192,6 +193,7 @@ class TransaksiController extends Controller
                 'keterangan'=>$item->attributes->keterangan,
             ]);
         }
+
 
         Cart::clear();
 

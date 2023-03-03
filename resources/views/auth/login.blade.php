@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 @error('password')
-                    <div class="invalid-feedback d-block">{{ message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
 
                 <div class="row mt-3">

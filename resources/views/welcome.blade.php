@@ -27,7 +27,7 @@
             'label'=>'Outlet',
             'icon'=>'fas fa-store-alt',
             'background'=>'bg-lightblue',
-            'href'=>route('user.index'),
+            'href'=>route('outlet.index'),
             'value'=>$outlet->jumlah
         ]"/>
         <x-box :data-box="[

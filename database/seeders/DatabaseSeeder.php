@@ -26,6 +26,21 @@ class DatabaseSeeder extends Seeder
                 'alamat'=>'Sukamanah, Desa Karangsari, Kec. Padaherang',
                 'tlp'=>'086512893457'
             ],
+            [
+                'nama'=>'Dika Ame Laundry',
+                'alamat'=>'Anggaraksan, Desa Maruyungsari, Kec. Padaherang',
+                'tlp'=>'999777666222'
+            ],
+            [
+                'nama'=>'Caca Laundry',
+                'alamat'=>'Tegalsari, Desa Cicapar, Kec. Banjarsari',
+                'tlp'=>'888222444555'
+            ],
+            [
+                'nama'=>'Laundry Cahaya',
+                'alamat'=>'Padaherang',
+                'tlp'=>'017652890912'
+            ],
         ]);
 
         DB::table('users')->insert([
@@ -48,8 +63,36 @@ class DatabaseSeeder extends Seeder
                 'username'=>'owner',
                 'password'=>bcrypt('1234'),
                 'role'=>'owner',
-                'outlet_id'=>1,
-            ]
+                'outlet_id'=>3,
+            ],
+            [
+                'nama'=>'Pevita Pearce',
+                'username'=>'pevita',
+                'password'=>bcrypt('1234'),
+                'role'=>'kasir',
+                'outlet_id'=>3,
+            ],
+            [
+                'nama'=>'Unaa',
+                'username'=>'unaa',
+                'password'=>bcrypt('1234'),
+                'role'=>'kasir',
+                'outlet_id'=>4,
+            ],
+            [
+                'nama'=>'Rini Yulia',
+                'username'=>'rini',
+                'password'=>bcrypt('1234'),
+                'role'=>'kasir',
+                'outlet_id'=>4,
+            ],
+            [
+                'nama'=>'Eneng Risma',
+                'username'=>'enengrisma',
+                'password'=>bcrypt('1234'),
+                'role'=>'kasir',
+                'outlet_id'=>5,
+            ],
         ]);
 
         DB::table('pakets')->insert([
@@ -64,6 +107,42 @@ class DatabaseSeeder extends Seeder
                 'harga'=> 5000,
                 'jenis'=> 'bed_cover',
                 'outlet_id'=>1,
+            ],
+            [
+                'nama_paket'=>'Reguler (2 Hari)',
+                'harga'=> 8000,
+                'jenis'=> 'kiloan',
+                'outlet_id'=>4,
+            ],
+            [
+                'nama_paket'=>'Express (1 Hari)',
+                'harga'=> 15000,
+                'jenis'=> 'kiloan',
+                'outlet_id'=>4,
+            ],
+            [
+                'nama_paket'=>'Express (6 Jam)',
+                'harga'=> 25000,
+                'jenis'=> 'kiloan',
+                'outlet_id'=>4,
+            ],
+            [
+                'nama_paket'=>'Reguler (2 Hari)',
+                'harga'=> 10000,
+                'jenis'=> 'kiloan',
+                'outlet_id'=>5,
+            ],
+            [
+                'nama_paket'=>'Cuci Cepat (1 Hari)',
+                'harga'=> 20000,
+                'jenis'=> 'kiloan',
+                'outlet_id'=>5,
+            ],
+            [
+                'nama_paket'=>'Cuci Cepat Hour (6)',
+                'harga'=> 35000,
+                'jenis'=> 'kiloan',
+                'outlet_id'=>5,
             ],
         ]);
 
@@ -85,6 +164,24 @@ class DatabaseSeeder extends Seeder
                 'jenis_kelamin'=>'P',
                 'alamat'=>'Cipicung, Desa Karangsari, Kec. Padaherang.',
                 'tlp'=>'888777666333',
+            ],
+            [
+                'nama'=>'Melisa Putri',
+                'jenis_kelamin'=>'P',
+                'alamat'=>'Cangkring.',
+                'tlp'=>'888000222333',
+            ],
+            [
+                'nama'=>'Roger Danuarta',
+                'jenis_kelamin'=>'P',
+                'alamat'=>'Banjarsari.',
+                'tlp'=>'888444555666',
+            ],
+            [
+                'nama'=>'Amelia Apandi',
+                'jenis_kelamin'=>'P',
+                'alamat'=>'Padaherang.',
+                'tlp'=>'023451765412',
             ],
         ]);
     }

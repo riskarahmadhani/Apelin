@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('outlets', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->text('alamat');
             $table->string('tlp');
         });

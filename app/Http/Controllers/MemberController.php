@@ -53,7 +53,7 @@ class MemberController extends Controller
             'nama' => 'required|max:100',
             'jenis_kelamin' => 'required|in:L,P',
             'alamat'=>'required|max:250',
-            'tlp'=>'required|numeric'
+            'tlp'=>'required|numeric|digits_between:1,13'
         ], [], [
             'tlp'=>'Telepon'
         ]);
@@ -103,7 +103,7 @@ class MemberController extends Controller
             'nama' => 'required|max:100',
             'jenis_kelamin' => 'required|in:L,P',
             'alamat'=>'required|max:250',
-            'tlp'=>'required|numeric'
+            'tlp'=>'required|numeric|digits_between:1,13'
         ], [], [
             'tlp'=>'Telepon'
         ]);

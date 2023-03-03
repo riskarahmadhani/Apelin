@@ -21,6 +21,12 @@
                 <label for="">Status Bayar</label>
                 <span> : {{ ucwords( str_replace('_',' ',$transaksi->dibayar)) }}</span>
             </div>
+            <div class="form-group">
+                <label for="">Tanggal Bayar</label>
+                <span> : 
+                    {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_bayar)) }}
+                </span>
+            </div>
         </div>
         <div class="col-2"></div>
         <div class="col">
@@ -29,12 +35,12 @@
                 <span> : {{ number_format($transaksi->sub_total,0,',','.') }}</span>
             </div>
             <div class="form-group">
-                <label for="">Diskon</label>
+                <label for="">Diskon (Optional)</label>
                 <span> : {{ number_format($transaksi->diskon,0,',','.') }}</span>
             </div>
             <div class="form-group">
                 <label for="">Biaya Tambahan</label>
-                <span> : {{ number_format($transaksi->Biaya_tambahan,0,',','.') }}</span>
+                <span> : {{ number_format($transaksi->biaya_tambahan,0,',','.') }}</span>
             </div>
             <div class="form-group">
                 <label for="">Pajak (10%)</label>
@@ -60,7 +66,6 @@
                         <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
                             Update Status
                         </button>
-                            {{-- <h3 class="center">Terima Kasih</h3> --}}
                      @endif
                     <div class="dropdown-menu">
                         <?php 

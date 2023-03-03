@@ -40,9 +40,6 @@
                                 <td></td>
                             </tr>
                         @endforeach
-                        {{-- <div class="card-footer pb-0 text-right">
-                            {{ $transaksis->appends(['nama'=>request()->nama])->links('page') }}
-                        </div> --}}
                     </tbody>
                 </table>
             </div>

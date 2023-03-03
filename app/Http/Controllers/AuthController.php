@@ -32,7 +32,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'username' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
+            'password' => 'Kata sandi yang dimasukkan salah.',
         ]);
     }
 

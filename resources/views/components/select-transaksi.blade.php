@@ -7,7 +7,7 @@ name="{{ $name }}"
 {{ $attributes->merge([
     'class' => 'form-control form-control-sm'.$is_invalid
 ]) }}>
-    <option value="">Pilih : </option>
+    <option value="">Pilih Paket : </option>
     @foreach ( $dataOption as $row)
         @if (old($name, $value) == $row['value'])
             <option value="<?= $row['value'] ?>" selected><?= $row['option'] ?></option>
