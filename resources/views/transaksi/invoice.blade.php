@@ -25,12 +25,21 @@
             <div class="col">
                 <p>
                     Nama Pelanggan : {{ $member->nama }} <br>
-                    Kasir : {{ $user->nama }}
+                    Kasir : {{ $user->nama }} <br>
+                    Kode Transaksi : {{ $transaksi->kode_invoice }}
                 </p>
             </div>
             <p>
-                Kode Transaksi : {{ $transaksi->kode_invoice }} <br>
-                Tanggal : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl)) }}
+                Tanggal : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl)) }} <br>
+                @if ($transaksi->dibayar == 'dibayar')
+                    Tanggal Bayar : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_bayar)) }} <br>
+                @endif
+                @if ($transaksi->status != 'diambil')
+                    Batas Waktu : {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }} <br>
+                @else
+                    Tanggal Diambil : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_diambil)) }} <br>
+                @endif
+                
             </p>
         </div>
         <div class="row">

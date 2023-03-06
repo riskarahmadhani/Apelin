@@ -16,7 +16,7 @@ tabindex="-1">
                 </button>
             </div>
             <div class="modal-body">
-                Apakah yakin akan dihapus ?
+                Apakah yakin akan dihapus <span id="delete-item-name"></span> ?
                 @csrf
                 @method('delete')
             </div>
@@ -38,7 +38,9 @@ tabindex="-1">
         $(function(){
             $(document).on('click','.btn-delete', function(){
                 let url = $(this).attr('data-url');
+                let name = $(this).attr('data-name');
                 $('#modalDelete form').attr('action',url);
+                $('#delete-item-name').text(name);
                 $('#modalDelete').modal('show');
             });
         });
