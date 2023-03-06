@@ -16,7 +16,7 @@
 
     <div class="card card-lightblue card-outline">
         <div class="card-header form-inline">
-            <x-btn-add :href="route('user.create')" />
+            <x-btn-add :href="route('user.create')" :title="'User'"/>
             <x-search />
         </div>
         <div class="card-body p-0">
@@ -45,7 +45,7 @@
                             <td>{{ $user->outlet }}</td>
                             <td>
                                 <x-edit :href="route('user.edit',['user'=>$user->id])" />
-                                <x-delete :data-url="route('user.destroy',['user'=>$user->id])" />
+                                <x-delete data-name="{{ $user->nama }}" :data-url="route('user.destroy',['user'=>$user->id])" />
                             </td>
                         </tr>
                     @endforeach

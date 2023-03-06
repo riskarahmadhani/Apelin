@@ -137,48 +137,14 @@
                             </div>
                         </div>
 
-                        {{-- @foreach ($items as $item)
-
-                        @if ($item->name == 'Reguler (2 Hari)' && $item->quantity * $item->price >= 1000000)
-                            <div class="form-group row">
-                                <label for="" class="col">Diskon</label>
-                                <div class="col">
-                                    <x-input-transaksi 
-                                    name="diskon"
-                                    id="diskon" 
-                                    :value="$item->quantity * $item->price * 10 / 100" />
-                                </div>
+                        <div class="form-group row">
+                            <label for="" class="col">Diskon (Optional)</label>
+                            <div class="col">
+                                <x-input-transaksi 
+                                name="diskon"
+                                id="diskon" />
                             </div>
-                            @elseif ($item->name == 'Cuci Cepat (1 Hari)' && $item->quantity * $item->price >= 800000)
-                                <div class="form-group row">
-                                    <label for="" class="col">Diskon (Optional)</label>
-                                    <div class="col">
-                                        <x-input-transaksi 
-                                        name="diskon"
-                                        id="diskon" 
-                                        :value="$item->quantity * $item->price * 10 / 100" />
-                                    </div>
-                                </div>
-                            @elseif ($item->name == 'Bed Cover' && $item->quantity * $item->price >= 1000000)
-                                <div class="form-group row">
-                                    <label for="" class="col">Diskon (Optional)</label>
-                                    <div class="col">
-                                        <x-input-transaksi 
-                                        name="diskon"
-                                        id="diskon" 
-                                        :value="$item->quantity * $item->price * 10 / 100" />
-                                    </div>
-                                </div>
-                            @else --}}
-                            <div class="form-group row">
-                                <label for="" class="col">Diskon (Optional)</label>
-                                <div class="col">
-                                    <x-input-transaksi 
-                                    name="diskon"
-                                    id="diskon" />
-                                </div>
-                            </div>
-
+                        </div>
 
                         <div class="form-group row">
                             <label for="" class="col">Biaya Tambahan (Optional)</label>

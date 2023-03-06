@@ -47,11 +47,19 @@
         <hr>
         <p>
             Kode Transaksi : {{ $transaksi->kode_invoice }} <br>
-            Tanggal Transaksi : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl)) }} <br>
-            Tanggal Ambil : {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }} <br>
+            Tanggal : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl)) }} <br>
+            @if ($transaksi->status != 'diambil')
+                Batas Waktu : {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }} <br>
+            @else
+                Tanggal Diambil : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_diambil)) }} <br>
+            @endif
+            {{-- Batas Waktu : {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }} <br> --}}
             @if ($transaksi->dibayar == 'dibayar')
                 Tanggal Bayar : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_bayar)) }} <br>
             @endif
+            {{-- @if ($transaksi->status == 'diambil')
+                Tanggal Diambil : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_diambil)) }} <br>
+            @endif --}}
             Nama Pelanggan : {{ $member->nama }} <br>
             Kasir : {{ $user->nama }} 
         </p>

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('kode_invoice')->unique();
             $table->dateTime('tgl');
             $table->dateTime('batas_waktu');
+            $table->dateTime('tgl_selesai')->nullable();
+            $table->dateTime('tgl_diambil')->nullable();
             $table->dateTime('tgl_bayar')->nullable();
             $table->integer('biaya_tambahan')->nullable();
             $table->integer('diskon')->nullable();

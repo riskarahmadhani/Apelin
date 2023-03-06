@@ -12,6 +12,7 @@ use App\Models\LogActivity;
 use Cart;
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
@@ -270,13 +271,43 @@ class TransaksiController extends Controller
         return back()->with('message','success update');
     }
 
+    const ALLOWED_VALUES = ['baru','proses','selesai','diambil'];
+
     public function status(Transaksi $transaksi, $status)
     {
+        if (!in_array($status, self::ALLOWED_VALUES)) {
+            return back()->with('message','fail store');
+        }
+
+        if ($transaksi->status == 'diambil') {
+            return back()->with('message','fail store');
+        }
+
+        if ($transaksi->status == 'baru') {
+            $nextStatus = 'proses';
+        } elseif ($transaksi->status == 'proses') {
+            $nextStatus = 'selesai';
+        } elseif ($transaksi->status == 'proses') {
+            $nextStatus = 'diambil';
+        } else {
+            $nextStatus = null;
+        }
+
+        if ($nextStatus != null && $status != $nextStatus) {
+            return back()->with('message','fail store');
+        }
+        
         $transaksi->update([
             'status'=>$status
         ]);
 
-        LogActivity::add('berhasil mengupdate status pembayaran');
+        if ($status == 'selesai' || $status == 'diambil') {
+            $transaksi->update([
+                'tgl_' . $status => Carbon::now(),
+            ]);
+        }
+
+        LogActivity::add('berhasil mengupdate status pembayaran' .$status .'.'. 'Invoice : ' .$transaksi->kode_invoice);
 
         return back()->with('message','success update');
     }

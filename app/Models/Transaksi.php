@@ -28,6 +28,8 @@ class Transaksi extends Model
         'cash',
         'kembalian',
         'status',
-        'dibayar'
+        'dibayar',
+        'tgl_diambil',
+        'tgl_selesai',
     ];
 }
