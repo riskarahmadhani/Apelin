@@ -82,8 +82,8 @@ class TransaksiController extends Controller
     {
         $request->validate([
             'paket'=>'required|exists:pakets,id',
-            'quantity'=>'required|numeric',
-            'keterangan'=>'nullable|max:60',
+            'quantity'=>'required|numeric|min:1',
+            'keterangan'=>'nullable|max:200',
         ]);
 
         $paket = Paket::find($request->paket);
@@ -91,10 +91,12 @@ class TransaksiController extends Controller
         Cart::session($member->id)->add(array(
             'id' => $paket->id,
             'name'=>$paket->nama_paket,
-            'price'=>$paket->harga,
+            'price'=>$paket->harga_akhir,
             'quantity'=>$request->quantity,
             'attributes'=>[
-                'keterangan'=>$request->keterangan
+                'harga_awal' => $paket->harga,
+                'keterangan' => $request->keterangan,
+                'diskon' => $paket->diskon,
             ]
         ));
 
@@ -188,7 +190,8 @@ class TransaksiController extends Controller
             TransaksiDetail::create([
                 'transaksi_id'=>$transaksi->id,
                 'paket_id'=>$item->id,
-                'harga'=>$item->price,
+                'harga' => $item->attributes->harga_awal,
+                'diskon_paket' => $item->attributes->diskon,
                 'qty'=>$item->quantity,
                 'sub_total'=>$item->price * $item->quantity,
                 'keterangan'=>$item->attributes->keterangan,
@@ -216,6 +219,7 @@ class TransaksiController extends Controller
             'qty',
             'transaksi_details.harga as harga',
             'sub_total',
+            'diskon_paket',
             'keterangan'
         )
         ->get();
@@ -324,6 +328,7 @@ class TransaksiController extends Controller
             'nama_paket',
             'qty',
             'transaksi_details.harga as harga',
+            'diskon_paket',
             'sub_total',
             'keterangan'
         )

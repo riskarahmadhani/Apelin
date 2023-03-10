@@ -59,5 +59,5 @@
 </x-content>
 @endsection
 @push('modal')
-    <x-modal-delete />
+    <x-modal-delete :page="'User'" />
 @endpush

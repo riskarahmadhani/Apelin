@@ -25,7 +25,7 @@
                     name="alamat" />
                 </div>
                 <div class="card-footer">
-                    <x-btn-submit />
+                    <x-btn-submit :title="'Outlet'" /> <x-btn-back href="{{ route('outlet.index') }}" />
                 </div>
             </form>
         </div>

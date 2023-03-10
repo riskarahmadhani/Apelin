@@ -31,7 +31,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <x-btn-submit />
+                    <x-btn-submit :title="'Member'" /> <x-btn-back href="{{ route('member.index') }}" />
                 </div>
             </form>
         </div>

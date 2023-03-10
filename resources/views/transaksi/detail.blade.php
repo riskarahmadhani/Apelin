@@ -4,6 +4,9 @@
         @if (session('message') == 'success update')
             <x-alert-success type="update" />
         @endif
+        @if (session('message') == 'fail store')
+            <x-alert-danger />
+        @endif
         <div class="card card-lightblue card-outline">
             <div class="card-header">
                 <div class="row">
@@ -33,6 +36,8 @@
                             <th>No</th>
                             <th>Nama Paket</th>
                             <th>Qty</th>
+                            {{-- <th>Harga</th> --}}
+                            <th>Diskon (%)</th>
                             <th>Sub Total</th>
                             <th>Keterangan</th>
                         </tr>
@@ -46,9 +51,9 @@
                                 <td>
                                     {{ $item->qty }} x {{ number_format($item->harga,0,',','.') }}
                                 </td>
-                                <td>
-                                    {{ number_format($item->qty * $item->harga,0,',','.') }}
-                                </td>
+                                {{-- <td>{{ number_format($item->qty * $item->harga,0,',','.') }}</td> --}}
+                                <td>{{ number_format($item->diskon_paket,0,',','.') }}%</td>
+                                <td>{{ number_format($item->sub_total,0,',','.') }}</td>
                                 <td>{{ $item->keterangan }}</td>
                             </tr>
                         @empty

@@ -15,6 +15,8 @@ class Paket extends Model
         'nama_paket',
         'harga',
         'jenis',
-        'outlet_id'
+        'diskon',
+        'harga_akhir',
+        'outlet_id',
     ];
 }

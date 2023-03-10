@@ -47,19 +47,15 @@
         <hr>
         <p>
             Kode Transaksi : {{ $transaksi->kode_invoice }} <br>
-            Tanggal : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl)) }} <br>
+            Tanggal Transaksi : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl)) }} <br>
             @if ($transaksi->status != 'diambil')
                 Batas Waktu : {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }} <br>
             @else
                 Tanggal Diambil : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_diambil)) }} <br>
             @endif
-            {{-- Batas Waktu : {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }} <br> --}}
             @if ($transaksi->dibayar == 'dibayar')
                 Tanggal Bayar : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_bayar)) }} <br>
             @endif
-            {{-- @if ($transaksi->status == 'diambil')
-                Tanggal Diambil : {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl_diambil)) }} <br>
-            @endif --}}
             Nama Pelanggan : {{ $member->nama }} <br>
             Kasir : {{ $user->nama }} 
         </p>
@@ -71,10 +67,15 @@
                     <td>
                         {{ $item->qty }} {{ $item->nama_paket }}
                         x {{ number_format($item->harga,0,',','.') }} <br>
+                        Diskon : {{ number_format($item->diskon_paket * $item->qty,0,',','.') }} <br>
                         <small>Ket : {{ $item->keterangan }}</small>
                     </td>
                     <td class="right">
-                        {{ number_format($item->harga * $item->qty,0,',','.') }}
+                        @if ($item->diskon_paket != null)
+                        {{ number_format($item->sub_total,0,',','.') }}
+                        @else
+                        {{ number_format($item->sub_total,0,',','.') }}
+                        @endif
                     </td>
                 </tr>
             @endforeach

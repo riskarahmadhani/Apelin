@@ -38,7 +38,7 @@
                     label="Password Konfirmasi" name="password_confirmation" type="password" />
                 </div>
                 <div class="card-footer">
-                    <x-btn-submit />
+                    <x-btn-submit :title="'User'" /> <x-btn-back href="{{ route('user.index') }}" />
                 </div>
             </form>
         </div>

@@ -20,7 +20,9 @@ class UserController extends Controller
         $users = User::join('outlets','outlets.id','users.outlet_id')
         ->when($search, function($query, $search){
             return $query->where('users.nama','like',"%{$search}%")
-            ->orWhere('username','like',"%{$search}%");
+            ->orWhere('username','like',"%{$search}%")
+            ->orWhere('role','like',"%{$search}%")
+            ->orWhere('outlets.nama','like',"%{$search}%");
         })
         ->select(
             'users.id as id',

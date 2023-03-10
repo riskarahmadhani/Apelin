@@ -19,6 +19,7 @@ return new class extends Migration
             ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('paket_id')->constrained('pakets')
             ->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('diskon_paket')->nullable();
             $table->integer('harga');
             $table->integer('qty');
             $table->integer('sub_total');

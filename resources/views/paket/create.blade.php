@@ -18,7 +18,19 @@
 
                     <x-input 
                     label="Harga"
-                    name="harga" />
+                    name="harga" 
+                    id="harga" 
+                    min="0" />
+
+                    <x-input 
+                    label="Diskon (%)"
+                    name="diskon" 
+                    type="number" />
+                    
+                    <x-input 
+                    label="Harga Akhir" 
+                    name="harga_akhir" 
+                    id="harga_akhir" readonly />
 
                     <x-select label="Jenis" name="jenis" :data-option="[
                         ['value'=>'kiloan','option'=>'Kiloan'],
@@ -35,10 +47,41 @@
 
                 </div>
                 <div class="card-footer">
-                    <x-btn-submit />
+                    <x-btn-submit :title="'Paket'" /> <x-btn-back href="{{ route('paket.index') }}" />
                 </div>
             </form>
         </div>
     </div>
 </x-content>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            function calculateFinalPrice() {
+                let harga = parseInt($('#harga').val());
+                let diskon = parseInt($('input[name="diskon"]').val());
+                if (isNaN(diskon)) {
+                    diskon = 0;
+                }
+                let harga_akhir = harga - (harga * diskon / 100);
+                if (harga_akhir < 0) {
+                    $('#harga_akhir').val('');
+                    alert('Diskon tidak boleh melebihi harga.');
+                    $('button[type="submit"]').attr('disabled', true);
+                    return;
+                }
+                $('#harga_akhir').val(harga_akhir);
+                $('button[type="submit"]').attr('disabled', false);
+            }
+
+            $('#harga').on('input', function(){
+                calculateFinalPrice();
+            });
+
+            $('input[name="diskon"]').on('input', function () {
+                calculateFinalPrice();
+            })
+        })
+    </script>
+@endpush

@@ -27,6 +27,8 @@
                         <th>Nama Paket</th>
                         <th>Harga</th>
                         <th>Jenis</th>
+                        <th>Diskon</th>
+                        <th>Harga Akhir</th>
                         <th>Outlet</th>
                         <th></th>
                     </tr>
@@ -42,6 +44,8 @@
                             <td>{{ $paket->nama_paket }}</td>
                             <td>{{ $paket->harga }}</td>
                             <td>{{ $paket->jenis }}</td>
+                            <td>{{ $paket->diskon }}%</td>
+                            <td>{{ $paket->harga_akhir }}</td>
                             <td>{{ $paket->outlet }}</td>
                             <td>
                                 <x-edit :href="route('paket.edit',['paket'=>$paket->id])" />
@@ -59,5 +63,7 @@
 </x-content>
 @endsection
 @push('modal')
-    <x-modal-delete />
+    <x-modal-delete 
+    page="Paket"
+    />
 @endpush

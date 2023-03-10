@@ -1,3 +1,3 @@
-<a {{ $attributes->merge(['class'=>'btn btn-default']) }}> 
+<a {{ $attributes->merge(['class'=>'btn btn-default bg-secondary']) }}> 
     Kembali
 </a>

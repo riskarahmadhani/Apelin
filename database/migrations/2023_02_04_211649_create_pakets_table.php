@@ -19,7 +19,9 @@ return new class extends Migration
             ->onDelete('cascade')->onUpdate('cascade');
             $table->string('nama_paket');
             $table->enum('jenis',['kiloan','selimut','bed_cover','kaos','lain']);
+            $table->integer('diskon')->nullable();
             $table->integer('harga');
+            $table->integer('harga_akhir')->nullable();
         });
     }
 

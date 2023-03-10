@@ -34,7 +34,7 @@
                     :value="$member->alamat" />
                 </div>
                 <div class="card-footer">
-                    <x-btn-update />
+                    <x-btn-update :title="'Member'" /> <x-btn-back href="{{ route('member.index') }}" />
                 </div>
             </form>
         </div>

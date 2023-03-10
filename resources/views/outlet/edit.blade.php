@@ -30,7 +30,7 @@
                     
                 </div>
                 <div class="card-footer">
-                    <x-btn-update />
+                    <x-btn-update :title="'Outlet'" /> <x-btn-back href="{{ route('outlet.index') }}" />
                 </div>
             </form>
         </div>

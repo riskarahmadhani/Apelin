@@ -18,8 +18,10 @@ class MemberController extends Controller
         $search = $request->search;
         $members = Member::when($search, function($query, $search){
             return $query->where('nama','like',"%{$search}%")
-            ->orWhere('tlp','like',"%{$search}%");
+            ->orWhere('tlp','like',"%{$search}%")
+            ->orWhere('alamat','like',"%{$search}%");
         })
+        ->orderBy('id','desc')
         ->paginate(10);
 
         if ($search) {

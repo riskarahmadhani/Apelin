@@ -18,7 +18,8 @@ class OutletController extends Controller
         $search = $request->search;
         $outlets = Outlet::when($search, function($query, $search){
             return $query->where('nama','like',"%{$search}%")
-            ->orWhere('tlp','like',"%{$search}%");
+            ->orWhere('tlp','like',"%{$search}%")
+            ->orWhere('alamat','like',"%{$search}%");
         })
         ->paginate(10);
 

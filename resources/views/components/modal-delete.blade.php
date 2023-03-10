@@ -1,3 +1,4 @@
+@props(['page'=>null])
 <div 
 class="modal fade" 
 id="modalDelete" 
@@ -16,7 +17,7 @@ tabindex="-1">
                 </button>
             </div>
             <div class="modal-body">
-                Apakah yakin akan dihapus <span id="delete-item-name"></span> ?
+                Apakah yakin {{ $page }} <span id="delete-item-name"></span> akan dihapus ?
                 @csrf
                 @method('delete')
             </div>

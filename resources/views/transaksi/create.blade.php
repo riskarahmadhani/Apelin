@@ -20,15 +20,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col">Cari </label>
+                                <label class="col">Pilih Paket </label>
                                 <div class="col">
-                                    <x-select-transaksi name="paket" :data-option="$pakets" />
+                                    <x-select-transaksi name="paket" :data-option="$pakets" required />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col">Quantity</label>
                                 <div class="col">
-                                    <x-input-transaksi name="quantity" />
+                                    <x-input-transaksi name="quantity" type="number" required />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -55,6 +55,8 @@
                             <th>No</th>
                             <th>Nama Paket</th>
                             <th>Qty</th>
+                            {{-- <th>Harga</th> --}}
+                            <th>Diskon (%)</th>
                             <th>Sub Total</th>
                             <th>Keterangan</th>
                             <th></th>
@@ -67,10 +69,17 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                    {{ $item->quantity }} x {{ number_format($item->price,0,',','.') }}
+                                    {{ $item->quantity }} x {{ number_format($item->attributes->harga_awal,0,',','.') }}
+                                </td>
+                                {{-- <td>
+                                    {{ number_format($item->quantity * $item->attributes->harga_awal,0,',','.') }}
+                                </td> --}}
+                                <td>
+                                    {{ number_format($item->attributes->diskon,0,',','.') }}%
                                 </td>
                                 <td>
-                                    {{ number_format($item->quantity * $item->price,0,',','.') }}
+                                    {{ 
+                                        number_format($item->quantity * $item->price,0,',','.') }}
                                 </td>
                                 <td>{{ $item->attributes->keterangan }}</td>
                                 <td>
@@ -95,7 +104,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center" colspan="6">
+                                <td class="text-center" colspan="8">
                                     Tidak ada paket dipilih
                                 </td>
                             </tr>
@@ -203,7 +212,7 @@
 
 @push('js')
     <script>
-        $('#diskon, #biaya_tambahan').keyup(function () {
+        $('#diskon, #biaya_tambahan').keyup(function (e) {
             let t = parseInt($('#total').val());
             let d = parseInt($('#diskon').val());
             let bt = parseInt($('#biaya_tambahan').val());
