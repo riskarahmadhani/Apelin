@@ -23,7 +23,7 @@
                     min="0" />
 
                     <x-input 
-                    label="Diskon (%)"
+                    label="Diskon"
                     name="diskon" 
                     type="number" />
                     
@@ -64,7 +64,7 @@
                 if (isNaN(diskon)) {
                     diskon = 0;
                 }
-                let harga_akhir = harga - (harga * diskon / 100);
+                let harga_akhir = harga - diskon;
                 if (harga_akhir < 0) {
                     $('#harga_akhir').val('');
                     alert('Diskon tidak boleh melebihi harga.');

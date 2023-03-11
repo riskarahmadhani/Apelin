@@ -83,7 +83,7 @@ class PaketController extends Controller
             'nama_paket' => 'required|max:100',
             'harga' => 'required|numeric|min:0',
             'jenis'=>'required|in:kiloan,bed_cover,kaos,selimut,lain',
-            'diskon'=>'nullable|numeric|digits_between:0,100',
+            'diskon'=>'nullable|numeric|min:0|',
             'harga_akhir'=>'nullable|numeric|min:0|',
             'outlet_id'=>'required|exists:outlets,id',
         ], [], [
@@ -137,7 +137,7 @@ class PaketController extends Controller
             'nama_paket' => 'required|max:100',
             'harga' => 'required|numeric|min:0|',
             'jenis'=>'required|in:kiloan,bed_cover,kaos,selimut,lain',
-            'diskon'=>'nullable|numeric|digits_between:0,100',
+            'diskon'=>'nullable|numeric|min:0|',
             'harga_akhir'=>'nullable|numeric|min:0|',
             'outlet_id'=>'required|exists:outlets,id',
         ], [], [

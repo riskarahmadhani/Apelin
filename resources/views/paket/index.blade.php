@@ -44,7 +44,7 @@
                             <td>{{ $paket->nama_paket }}</td>
                             <td>{{ $paket->harga }}</td>
                             <td>{{ $paket->jenis }}</td>
-                            <td>{{ $paket->diskon }}%</td>
+                            <td>{{ $paket->diskon }}</td>
                             <td>{{ $paket->harga_akhir }}</td>
                             <td>{{ $paket->outlet }}</td>
                             <td>

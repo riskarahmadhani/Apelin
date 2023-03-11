@@ -7,12 +7,14 @@
                     {{ date('d/m/Y H:i:s', strtotime($transaksi->tgl)) }}
                 </span>
             </div>
-            <div class="form-group">
-                <label for="">Batas Waktu</label>
-                <span> : 
-                    {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }}
-                </span>
-            </div>
+            @if ($transaksi->status != 'diambil')
+                <div class="form-group">
+                    <label for="">Batas Waktu</label>
+                    <span> : 
+                        {{ date('d/m/Y H:i:s', strtotime($transaksi->batas_waktu)) }}
+                    </span>
+                </div>
+            @endif
             <div class="form-group">
                 <label for="">Status</label>
                 <span> : {{ ucwords($transaksi->status) }}</span>
