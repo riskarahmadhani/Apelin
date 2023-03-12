@@ -145,7 +145,6 @@
                                 :value="$total" disabled />
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="" class="col">Diskon (Optional)</label>
                             <div class="col">
