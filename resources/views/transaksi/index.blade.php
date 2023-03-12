@@ -3,8 +3,12 @@
     <x-content :title="['name'=>'Transaksi','icon'=>'fas fa-cash-register']">
         <div class="card card-lightblue card-outline">
             <div class="card-header form-inline">
-                @include('transaksi.add',['members'=>$members])
-                <x-search />
+                {{-- <div class="col-6"> --}}
+                    @include('transaksi.add',['members'=>$members])
+                {{-- </div> --}}
+                {{-- <div class="col-6"> --}}
+                    <x-search-date />
+                {{-- </div> --}}
             </div>
             <div class="card-body p-0">
                 <table class="table table-striped table-hover">

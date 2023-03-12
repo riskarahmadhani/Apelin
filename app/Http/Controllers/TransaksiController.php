@@ -21,6 +21,7 @@ class TransaksiController extends Controller
         $members = Member::select('id','nama')->get();
 
         $search = $request->search;
+        $tanggal = $request->tanggal;
         $user = Auth::user();
         $outlet_id = $user->role != 'admin' ? $user->outlet_id : null;
 
@@ -28,6 +29,9 @@ class TransaksiController extends Controller
         ->join('users','users.id','transaksis.user_id')
         ->join('outlets','outlets.id','transaksis.outlet_id')
         ->where('members.nama','like',"%{$search}%")
+        ->when($tanggal, function($query, $tanggal){
+            return $query->whereDate('tgl','like',"%{$tanggal}%");
+        })
         ->when($outlet_id, function($query, $outlet_id){
             return $query->where('transaksis.outlet_id',$outlet_id);
         })
