@@ -88,6 +88,7 @@ class LaporanController extends Controller
         $data = Transaksi::where('dibayar','dibayar')
         ->whereMonth('tgl',$request->bulan)
         ->whereYear('tgl',$request->tahun)
+        ->where('outlet_id', $request->outlet_id)
         ->select(
             DB::raw('DATE(tgl) AS tanggal'),
             DB::raw('sum(total_bayar) as jumlah')

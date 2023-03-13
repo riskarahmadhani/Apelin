@@ -5,7 +5,7 @@
         'icon'=>'fas fa-user'
     ]">
     <div class="row">
-        <div class="col-lg-4 col-md-6">
+        <div class="col-md-6">
 
             @if (session('message') == 'success update')
                 <x-alert-success type="update" />
@@ -14,7 +14,7 @@
             <form
             class="card card-lightblue"
             method="POST" 
-            action="{{ route('profile.update') }}">
+            action="{{ route('profile.update') }}" enctype="multipart/form-data">
             <div class="card-header">
             </div>
             <div class="card-body">
@@ -31,21 +31,28 @@
                 :value="$pegawai->username"
                 disabled/>
 
+                <x-input label="File Foto/Gambar" name="file_foto" type="file" />
+
                 <p class="text-muted">
                     Kosongkan password jika tidak mengganti password.
                 </p>
-                <x-input 
-                label="Password"
-                name="password"
-                type="password" />
-
-                <x-input 
-                label="Password Confirmation"
-                name="password_confirmation"
-                type="password" />
+                <div class="row">
+                    <div class="col">
+                        <x-input 
+                        label="Password"
+                        name="password"
+                        type="password" />
+                    </div>
+                    <div class="col">
+                        <x-input 
+                        label="Password Confirmation"
+                        name="password_confirmation"
+                        type="password" />
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
-                <x-btn-update /> <x-btn-back href="{{ route('profile.index') }}" />
+                <x-btn-update :title="'Profil'" /> <x-btn-back href="{{ route('profile.index') }}" />
             </div>
         </form>
         </div>

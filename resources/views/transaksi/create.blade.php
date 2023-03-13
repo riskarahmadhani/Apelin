@@ -55,7 +55,7 @@
                             <th>No</th>
                             <th>Nama Paket</th>
                             <th>Qty</th>
-                            <th>Harga</th>
+                            {{-- <th>Harga</th> --}}
                             <th>Diskon</th>
                             <th>Sub Total</th>
                             <th>Keterangan</th>
@@ -71,9 +71,9 @@
                                 <td>
                                     {{ $item->quantity }} x {{ number_format($item->attributes->harga_awal,0,',','.') }}
                                 </td>
-                                <td>
+                                {{-- <td>
                                     {{ number_format($item->quantity * $item->attributes->harga_awal,0,',','.') }}
-                                </td>
+                                </td> --}}
                                 <td>
                                     {{ number_format($item->quantity * $item->attributes->diskon,0,',','.') }}
                                 </td>

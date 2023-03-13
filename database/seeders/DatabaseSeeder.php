@@ -27,19 +27,9 @@ class DatabaseSeeder extends Seeder
                 'tlp'=>'086512893457'
             ],
             [
-                'nama'=>'Dika Ame Laundry',
-                'alamat'=>'Anggaraksan, Desa Maruyungsari, Kec. Padaherang',
-                'tlp'=>'999777666222'
-            ],
-            [
-                'nama'=>'Caca Laundry',
-                'alamat'=>'Tegalsari, Desa Cicapar, Kec. Banjarsari',
-                'tlp'=>'888222444555'
-            ],
-            [
-                'nama'=>'Laundry Cahaya',
-                'alamat'=>'Padaherang',
-                'tlp'=>'017652890912'
+                'nama'=>'Riska Laundry Sukawarna',
+                'alamat'=>'Sukawarna, Cicendo, Bandung',
+                'tlp'=>'076548932145'
             ],
         ]);
 
@@ -47,6 +37,7 @@ class DatabaseSeeder extends Seeder
             [
                 'nama'=>'Administrator',
                 'username'=>'admin',
+                'foto'=>'admin.jpg',
                 'password'=>bcrypt('1234'),
                 'role'=>'admin',
                 'outlet_id'=>1,
@@ -54,6 +45,7 @@ class DatabaseSeeder extends Seeder
             [
                 'nama'=>'Kasir',
                 'username'=>'kasir',
+                'foto'=>'kasir.jpg',
                 'password'=>bcrypt('1234'),
                 'role'=>'kasir',
                 'outlet_id'=>1,
@@ -61,37 +53,10 @@ class DatabaseSeeder extends Seeder
             [
                 'nama'=>'Pemilik',
                 'username'=>'owner',
+                'foto'=>'owner.jpg',
                 'password'=>bcrypt('1234'),
                 'role'=>'owner',
                 'outlet_id'=>3,
-            ],
-            [
-                'nama'=>'Pevita Pearce',
-                'username'=>'pevita',
-                'password'=>bcrypt('1234'),
-                'role'=>'kasir',
-                'outlet_id'=>3,
-            ],
-            [
-                'nama'=>'Unaa',
-                'username'=>'unaa',
-                'password'=>bcrypt('1234'),
-                'role'=>'kasir',
-                'outlet_id'=>4,
-            ],
-            [
-                'nama'=>'Rini Yulia',
-                'username'=>'rini',
-                'password'=>bcrypt('1234'),
-                'role'=>'kasir',
-                'outlet_id'=>4,
-            ],
-            [
-                'nama'=>'Eneng Risma',
-                'username'=>'enengrisma',
-                'password'=>bcrypt('1234'),
-                'role'=>'kasir',
-                'outlet_id'=>5,
             ],
         ]);
 
@@ -113,91 +78,33 @@ class DatabaseSeeder extends Seeder
                 'outlet_id'=>1,
             ],
             [
-                'nama_paket'=>'Reguler (2 Hari)',
-                'harga'=> 8000,
-                'diskon'=> 0,
-                'harga_akhir'=> 8000,
-                'jenis'=> 'kiloan',
-                'outlet_id'=>4,
-            ],
-            [
-                'nama_paket'=>'Express (1 Hari)',
-                'harga'=> 15000,
-                'diskon'=> 0,
-                'harga_akhir'=> 15000,
-                'jenis'=> 'kiloan',
-                'outlet_id'=>4,
-            ],
-            [
                 'nama_paket'=>'Express (6 Jam)',
                 'harga'=> 25000,
                 'diskon'=> 0,
                 'harga_akhir'=> 25000,
                 'jenis'=> 'kiloan',
-                'outlet_id'=>4,
-            ],
-            [
-                'nama_paket'=>'Reguler (2 Hari)',
-                'harga'=> 10000,
-                'diskon'=> 0,
-                'harga_akhir'=> 10000,
-                'jenis'=> 'kiloan',
-                'outlet_id'=>5,
-            ],
-            [
-                'nama_paket'=>'Cuci Cepat (1 Hari)',
-                'harga'=> 20000,
-                'diskon'=> 0,
-                'harga_akhir'=> 20000,
-                'jenis'=> 'kiloan',
-                'outlet_id'=>5,
-            ],
-            [
-                'nama_paket'=>'Cuci Fast Hour (6)',
-                'harga'=> 35000,
-                'diskon'=> 0,
-                'harga_akhir'=> 35000,
-                'jenis'=> 'kiloan',
-                'outlet_id'=>5,
+                'outlet_id'=>1,
             ],
         ]);
 
         DB::table('members')->insert([
             [
-                'nama'=>'Rizki Fauzi',
-                'jenis_kelamin'=>'L',
-                'alamat'=>'Cipicung, Desa Karangsari, Kec. Padaherang.',
+                'nama'=>'Riska Rahmadhani',
+                'jenis_kelamin'=>'P',
+                'alamat'=>'Sukawarna, Cicendo, Bandung.',
                 'tlp'=>'888777666888',
             ],
             [
-                'nama'=>'Yuni Alpiani',
-                'jenis_kelamin'=>'P',
+                'nama'=>'Warsono',
+                'jenis_kelamin'=>'L',
                 'alamat'=>'Sukamanah, Desa Karangsari, Kec. Padaherang.',
                 'tlp'=>'888222666555',
             ],
             [
-                'nama'=>'Desi Yuliani',
+                'nama'=>'Wanyi',
                 'jenis_kelamin'=>'P',
                 'alamat'=>'Cipicung, Desa Karangsari, Kec. Padaherang.',
                 'tlp'=>'888777666333',
-            ],
-            [
-                'nama'=>'Melisa Putri',
-                'jenis_kelamin'=>'P',
-                'alamat'=>'Cangkring.',
-                'tlp'=>'888000222333',
-            ],
-            [
-                'nama'=>'Roger Danuarta',
-                'jenis_kelamin'=>'P',
-                'alamat'=>'Banjarsari.',
-                'tlp'=>'888444555666',
-            ],
-            [
-                'nama'=>'Amelia Apandi',
-                'jenis_kelamin'=>'P',
-                'alamat'=>'Padaherang.',
-                'tlp'=>'023451765412',
             ],
         ]);
     }

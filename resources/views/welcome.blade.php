@@ -10,7 +10,7 @@
         <x-box :data-box="[
             'label'=>'Transaksi',
             'icon'=>'fas fa-cash-register',
-            'background'=>'bg-success',
+            'background'=>'bg-danger',
             'href'=>route('transaksi.index'),
             'value'=>$transaksi->jumlah
         ]"/>
@@ -26,7 +26,7 @@
         <x-box :data-box="[
             'label'=>'Outlet',
             'icon'=>'fas fa-store-alt',
-            'background'=>'bg-lightblue',
+            'background'=>'bg-purple',
             'href'=>route('outlet.index'),
             'value'=>$outlet->jumlah
         ]"/>

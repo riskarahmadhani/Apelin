@@ -34,7 +34,7 @@
                     class="form-control @error('password')
                         is-invalid
                     @enderror"
-                    placeholder="password" >
+                    placeholder="Password" >
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

@@ -5,7 +5,7 @@
     'icon'=>'fas fa-cubes'
 ]">
     <div class="row">
-        <div class="col-lg-4 col-md-6">
+        <div class="col-md-6">
             <form action="{{ route('paket.update',['paket'=>$paket->id]) }}" class="card card-lightblue" method="POST">
                 <div class="card-header">
                     Edit Paket
@@ -18,17 +18,23 @@
                     name="nama_paket" 
                     :value="$paket->nama_paket" />
 
-                    <x-input 
-                    label="Harga"
-                    name="harga" 
-                    id="harga"
-                    :value="$paket->harga" />
+                    <div class="row">
+                        <div class="col">
+                            <x-input 
+                            label="Harga"
+                            name="harga" 
+                            id="harga"
+                            :value="$paket->harga" />
+                        </div>
 
-                    <x-input 
-                    label="Diskon" 
-                    name="diskon" 
-                    :value="$paket->diskon" 
-                    type="number"/>
+                        <div class="col">
+                            <x-input 
+                            label="Diskon" 
+                            name="diskon" 
+                            :value="$paket->diskon" 
+                            type="number"/>
+                        </div>
+                    </div>
 
                     <x-input 
                     label="Harga Akhir" 
@@ -36,22 +42,28 @@
                     id="harga_akhir" 
                     :value="$paket->harga_akhir" 
                     readonly />
+                    
+                    <div class="row">
+                        <div class="col">
+                            <x-select label="Jenis" name="jenis"
+                            :value="$paket->jenis"
+                            :data-option="[
+                                ['value'=>'kiloan','option'=>'Kiloan'],
+                                ['value'=>'kaos','option'=>'T-Shirt/Kaos'],
+                                ['value'=>'bed_cover','option'=>'Bed Cover'],
+                                ['value'=>'selimut','option'=>'Selimut'],
+                                ['value'=>'lain','option'=>'Lainnya'],
+                            ]" />
+                        </div>
 
-                    <x-select label="Jenis" name="jenis"
-                    :value="$paket->jenis"
-                    :data-option="[
-                        ['value'=>'kiloan','option'=>'Kiloan'],
-                        ['value'=>'kaos','option'=>'T-Shirt/Kaos'],
-                        ['value'=>'bed_cover','option'=>'Bed Cover'],
-                        ['value'=>'selimut','option'=>'Selimut'],
-                        ['value'=>'lain','option'=>'Lainnya'],
-                    ]" />
-
-                    <x-select 
-                    label="Outlet"
-                    name="outlet_id"
-                    :value="$paket->outlet_id"
-                    :data-option="$outlets" />
+                        <div class="col">
+                            <x-select 
+                            label="Outlet"
+                            name="outlet_id"
+                            :value="$paket->outlet_id"
+                            :data-option="$outlets" />
+                        </div>
+                    </div>
 
                 </div>
                 <div class="card-footer">

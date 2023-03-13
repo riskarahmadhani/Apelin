@@ -24,6 +24,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Foto</th>
                         <th>Nama</th>
                         <th>Username</th>
                         <th>Role</th>
@@ -39,6 +40,9 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $no++ }}</td>
+                            <td>
+                                <img src="{{ $user->foto }}" class="img-fluid mr-2 rounded" width="100">
+                            </td>
                             <td>{{ $user->nama }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->role }}</td>

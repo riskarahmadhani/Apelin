@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Outlet;
 use App\Models\User;
+use Image;
+use Illuminate\Validation\Rules\Password;
 use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
@@ -28,10 +30,15 @@ class UserController extends Controller
             'users.id as id',
             'users.nama as nama',
             'username',
+            'foto',
             'role',
             'outlets.nama as outlet'
         )
         ->paginate(10);
+
+        $users->map(function($row){
+            $row->foto = asset("images/{$row->foto}");
+        });
 
         if ($search) {
             $users->appends(['search' => $search]);
@@ -66,11 +73,28 @@ class UserController extends Controller
         $request->validate([
             'nama' => 'required|max:100',
             'username' => 'required|max:100|unique:users',
+            'file_foto' => 'required|image|max:2000',
             'role'=>'required|in:admin,kasir,owner',
             'outlet_id'=>'required|exists:outlets,id',
             'password'=>'required|max:100|confirmed'
         ], [], [
             'outlet_id'=>'outlet'
+        ]);
+
+        $folder = 'images';
+        if(!file_exists($folder)) {
+            mkdir($folder, 0777, true);
+        }
+        $file = $request->file('file_foto');
+        $ext = $file->getClientOriginalExtension();
+        $filename = date('Ymdhis').'.'.$ext;
+        $img = Image::make($file);
+        $img->fit(300,300);
+        $img->save($folder.'/'.$filename);
+
+        $request->merge([
+            'password' => bcrypt($request->password),
+            'foto'=>$filename,
         ]);
 
         User::create($request->all());
@@ -117,14 +141,43 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'nama' => 'required|max:100',
+            'nama' => 'required|max:100', //regex:/^[a-zA-Z ]+$/|min:4
             'username'=>'required|max:100|unique:users,username,'.$user->id,
             'role'=>'required|in:admin,kasir,owner',
             'outlet_id'=>'required|exists:outlets,id',
             'password'=>'nullable|max:100|confirmed'
+            // 'password' => [
+                // 'required',
+                // 'string',
+                //     Password::min(8)
+                //     ->mixedCase()
+                //     ->numbers()
+                //     ->symbols()
+                //     ->uncompromised(),
+                //     'confirmed'
+                // ]
         ], [], [
             'outlet_id'=>'outlet'
         ]);
+
+        if ($request->file_foto){
+
+            $folder = 'images';
+            $foto_lama = "{$folder}/{$user->foto}";
+            if (file_exists($foto_lama)){
+                unlink($foto_lama);
+            }
+            $file = $request->file('file_foto');
+            $ext = $file->getClientOriginalExtension();
+            $filename = date('Ymdhis').'.'.$ext;
+            $img = Image::make($file);
+            $img->fit(300,300);
+            $img->save($folder.'/'.$filename);
+
+            $request->merge([
+                'foto'=>$filename,
+            ]);
+        }
 
         if ($request->password) {
             $request->merge([
@@ -149,6 +202,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $folder = 'images';
+        $foto_lama = "{$folder}/{$user->foto}";
+
+        if (file_exists($foto_lama)){
+            unlink($foto_lama);
+        }
+
         $user->delete();
 
         LogActivity::add('berhasil menghapus user');

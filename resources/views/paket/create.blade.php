@@ -5,7 +5,7 @@
     'icon'=>'fas fa-cubes'
 ]">
     <div class="row">
-        <div class="col-lg-4 col-md-6">
+        <div class="col-md-6">
             <form action="{{ route('paket.store') }}" class="card card-lightblue" method="POST">
                 <div class="card-header">
                     Buat Paket
@@ -16,34 +16,46 @@
                     label="Nama Paket" 
                     name="nama_paket" />
 
-                    <x-input 
-                    label="Harga"
-                    name="harga" 
-                    id="harga" 
-                    min="0" />
+                    <div class="row">
+                        <div class="col">
+                            <x-input 
+                            label="Harga"
+                            name="harga" 
+                            id="harga" 
+                            min="0"/>
+                        </div>
 
-                    <x-input 
-                    label="Diskon"
-                    name="diskon" 
-                    type="number" />
+                        <div class="col">
+                            <x-input 
+                            label="Diskon"
+                            name="diskon" 
+                            type="number"/>
+                        </div>
+                    </div>
                     
                     <x-input 
                     label="Harga Akhir" 
                     name="harga_akhir" 
                     id="harga_akhir" readonly />
 
-                    <x-select label="Jenis" name="jenis" :data-option="[
-                        ['value'=>'kiloan','option'=>'Kiloan'],
-                        ['value'=>'kaos','option'=>'T-Shirt/Kaos'],
-                        ['value'=>'bed_cover','option'=>'Bed Cover'],
-                        ['value'=>'selimut','option'=>'Selimut'],
-                        ['value'=>'lain','option'=>'Lainnya'],
-                    ]" />
+                    <div class="row">
+                        <div class="col">
+                            <x-select label="Jenis" name="jenis" :data-option="[
+                                ['value'=>'kiloan','option'=>'Kiloan'],
+                                ['value'=>'kaos','option'=>'T-Shirt/Kaos'],
+                                ['value'=>'bed_cover','option'=>'Bed Cover'],
+                                ['value'=>'selimut','option'=>'Selimut'],
+                                ['value'=>'lain','option'=>'Lainnya'],
+                            ]" />
+                        </div>
 
-                    <x-select 
-                    label="Outlet"
-                    name="outlet_id"
-                    :data-option="$outlets" />
+                        <div class="col">
+                            <x-select 
+                            label="Outlet"
+                            name="outlet_id"
+                            :data-option="$outlets" />
+                        </div>
+                    </div>
 
                 </div>
                 <div class="card-footer">
@@ -70,7 +82,7 @@
                     alert('Diskon tidak boleh melebihi harga.');
                     $('button[type="submit"]').attr('disabled', true);
                     return;
-                }
+                } 
                 $('#harga_akhir').val(harga_akhir);
                 $('button[type="submit"]').attr('disabled', false);
             }

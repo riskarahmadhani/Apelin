@@ -132,8 +132,8 @@ class TransaksiController extends Controller
     {
         $request->validate([
             'batas_waktu'=>'required|after_or_equal:now',
-            'diskon'=>'nullable|numeric',
-            'biaya_tambahan'=>'nullable|numeric',
+            'diskon'=>'nullable|numeric|min:0|',
+            'biaya_tambahan'=>'nullable|numeric|min:0|',
             'uang_tunai'=>'nullable|numeric'
         ]);
 
@@ -154,7 +154,13 @@ class TransaksiController extends Controller
 
         if($uang_tunai && ($kembalian < 0 ) ){
             return back()->withInput()->withErrors([
-                'uang_tunai'=>'Uang tunai kurang dari total bayar'
+                'uang_tunai'=>'Uang tunai kurang dari total bayar.'
+            ]);
+        }
+
+        if($diskon >  $subtotal){
+            return back()->withInput()->withErrors([
+                'diskon'=>'Diskon tidak boleh lebih dari subtotal.'
             ]);
         }
 
@@ -240,8 +246,8 @@ class TransaksiController extends Controller
     public function update(Request $request, Transaksi $transaksi)
     {
         $request->validate([
-            'diskon'=>'nullable|numeric',
-            'biaya_tambahan'=>'nullable|numeric',
+            'diskon'=>'nullable|numeric|min:0',
+            'biaya_tambahan'=>'nullable|numeric|min:0',
             'uang_tunai'=>'nullable|numeric',
         ]);
 
@@ -257,6 +263,12 @@ class TransaksiController extends Controller
         if($uang_tunai && ($kembalian < 0 ) ){
             return back()->withInput()->withErrors([
                 'uang_tunai'=>'Uang tunai kurang dari total bayar'
+            ]);
+        }
+
+        if($diskon >  $subtotal){
+            return back()->withInput()->withErrors([
+                'diskon'=>'Diskon tidak boleh lebih dari subtotal.'
             ]);
         }
 

@@ -12,25 +12,16 @@
                     'active'=>['dashboard']
                 ]"/>
 
-                @can('admin-owner')
-                <x-nav-item href="{{ route('log') }}" :title="[
-                    'name'=>'Log Activity',
-                    'icon'=>'fas fa-shoe-prints',
-                    'active'=>['log']
-                ]"/>
-                @endcan
-                                
                 @can('admin-kasir')
-                <x-nav-item href="{{ route('member.index') }}" :title="[
-                    'name'=>'Member',
-                    'icon'=>'fas fa-users',
-                    'active'=>['member.index','member.edit','member.create']
-                ]" />
-                
                 <x-nav-item href="{{ route('transaksi.index') }}" :title="[
                     'name'=>'Transaksi',
                     'icon'=>'fas fa-cash-register',
                     'active'=>['transaksi.index','transaksi.detail','transaksi.create']
+                ]" />
+                <x-nav-item href="{{ route('member.index') }}" :title="[
+                    'name'=>'Member',
+                    'icon'=>'fas fa-users',
+                    'active'=>['member.index','member.edit','member.create']
                 ]" />
                 @endcan
 
@@ -41,16 +32,16 @@
                     'active'=>['user.index','user.edit','user.create']
                 ]" />
 
-                <x-nav-item href="{{ route('outlet.index') }}" :title="[
-                    'name'=>'Outlet',
-                    'icon'=>'fas fa-store-alt',
-                    'active'=>['outlet.index','outlet.edit','outlet.create']
-                ]" />
-                
                 <x-nav-item href="{{ route('paket.index') }}" :title="[
                     'name'=>'Paket',
                     'icon'=>'fas fa-cubes',
                     'active'=>['paket.index','paket.edit','paket.create']
+                ]" />
+
+                <x-nav-item href="{{ route('outlet.index') }}" :title="[
+                    'name'=>'Outlet',
+                    'icon'=>'fas fa-store-alt',
+                    'active'=>['outlet.index','outlet.edit','outlet.create']
                 ]" />
                 @endcan
 
@@ -59,6 +50,14 @@
                     'icon'=>'fas fa-print',
                     'active'=>['laporan.index','laporan.harian','laporan.perbulan']
                 ]" />
+
+                @can('admin-owner')
+                <x-nav-item href="{{ route('log') }}" :title="[
+                    'name'=>'Log Activity',
+                    'icon'=>'fas fa-shoe-prints',
+                    'active'=>['log']
+                ]"/>
+                @endcan
 
             </ul>
         </nav>
