@@ -21,8 +21,9 @@ class DashboardController extends Controller
         $member = Member::select(DB::raw('count(id) as jumlah'))->first();
         $outlet = Outlet::select(DB::raw('count(id) as jumlah'))->first();
 
-        $transaksi = Transaksi::where('dibayar','belum_bayar')
-        ->select(DB::raw('count(id) as jumlah'))->first();
+        $transaksi = Transaksi::
+        where('dibayar','dibayar')->
+        select(DB::raw('count(id) as jumlah'))->first();
 
         $charts = Transaksi::where('dibayar','dibayar')
         ->when($outlet_id, function($query, $outlet_id){

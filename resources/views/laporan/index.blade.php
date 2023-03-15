@@ -12,7 +12,14 @@
                 </div>
                 <div class="card-body">
                     @csrf
-                    <x-input label="Tanggal" name="tanggal" type="date" />
+                    <div class="row">
+                        <div class="col">
+                            <x-input label="Tanggal Awal" name="tanggal_awal" type="date" /> 
+                        </div>
+                        <div class="col">
+                            <x-input label="Tanggal Akhir" name="tanggal_akhir" type="date" /> 
+                        </div>
+                    </div>
                     <x-select label="Outlet" name="outlet_id" :data-option="$outlets" />
                 </div>
                 <div class="card-footer">

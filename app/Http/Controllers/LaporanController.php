@@ -48,7 +48,8 @@ class LaporanController extends Controller
     public function harian(Request $request)
     {
         $request->validate([
-            'tanggal'=>'required|date_format:Y-m-d',
+            'tanggal_awal'=>'required|date_format:Y-m-d',
+            'tanggal_akhir'=>'nullable|date_format:Y-m-d',
             'outlet_id'=>'required'
         ]);
 
@@ -58,7 +59,9 @@ class LaporanController extends Controller
         ->join('members','members.id','transaksis.member_id')
         ->where('dibayar','dibayar')
         ->where('transaksis.outlet_id',$request->outlet_id)
-        ->whereDate('tgl',$request->tanggal)
+        ->whereDate('tgl',$request->tanggal_awal)
+        ->orWhereDate('tgl',$request->tanggal_akhir)
+        ->orWhereBetween('tgl',[$request->tanggal_awal, $request->tanggal_akhir])
         ->select(
             'members.nama as nama',
             'users.nama as kasir',

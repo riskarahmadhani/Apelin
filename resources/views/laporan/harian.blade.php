@@ -12,7 +12,12 @@
                     $bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
                 @endphp
                 <h3 class="mb-0">Laporan Harian</h3>
-                <p>{{ date('d F Y', strtotime(request()->tanggal)) }}</p>
+                <p>
+                    {{ date('d F Y', strtotime(request()->tanggal_awal)) }} 
+                    @if ( request()->tanggal_akhir )
+                     - {{ date('d F Y', strtotime(request()->tanggal_akhir)) }} 
+                    @endif
+                </p>
             </div>
         </div>
         <table class="table table-sm table-striped mt-3">
